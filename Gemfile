@@ -35,6 +35,7 @@ gem 'bootstrap-sass'
 # gem 'capistrano-rails', group: :development
 
 gem 'devise', '~> 3.5', '>= 3.5.2'
+gem 'paperclip','~> 4.0'
 
 group :development, :test do
   gem 'sqlite3'

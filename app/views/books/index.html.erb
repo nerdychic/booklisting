@@ -1,34 +1,16 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Books</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Description</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @books.each do |book| %>
-      <tr>
-        <td><%= image_tag book.image.url(:medium) %></td>
-        <td><%= book.description %></td>
-        <td><%= book.user.email if book.user %></td>
-        <td><%= link_to 'Show', book %></td>
+ <div id="books" class="transitions-enabled">
+ <% @books.each do |book| %>
+  <div class="box panel panel-default">
+      <%= image_tag book.image.url(:medium) %>
+      <div class="panel-body">
+        <%= book.description %>
+        <%= book.user.email if book.user %>
+        <%= link_to 'Show', book_path(book) %>
        <% if book.user == current_user %>
-        <td><%= link_to 'Edit', edit_book_path(book) %></td>
-        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%= link_to 'Edit', edit_book_path(book) %>
+        <%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
-      </tr>
+    </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-<% if user_signed_in? %>
-<%= link_to 'New Book', new_book_path %>
-<% end %>
+</div>

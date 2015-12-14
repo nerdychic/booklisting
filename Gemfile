@@ -1,5 +1,5 @@
-# source 'https://rubygems.org'
-source 'https://ruby.taobao.org'
+source 'https://rubygems.org'
+# source 'https://ruby.taobao.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -37,6 +37,8 @@ gem 'bootstrap-sass'
 gem 'devise', '~> 3.5', '>= 3.5.2'
 gem 'paperclip','~> 4.0'
 gem 'masonry-rails', '~> 0.2.4'
+gem 'will_paginate', '~> 3.0'
+gem 'will_paginate-bootstrap'
 
 group :development, :test do
   gem 'sqlite3'

@@ -6,7 +6,7 @@
       <%= link_to image_tag(book.image.url(:medium)), book %>
       <div class="panel-body">
         <%= book.description %><br/>
-        <strong><%= book.user.email if book.user %></strong>
+        <strong><%= book.user.name if book.user %></strong>
        <% if book.user == current_user %>
           <div class="actions">
         <%= link_to edit_book_path(book) do %>

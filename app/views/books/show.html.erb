@@ -8,7 +8,7 @@
 </div>
 	<div class="panel-body">
 	<p><%= @book.description %></p>
-  	<p><strong><%= @book.user.email if @book.user %></strong></p>
+  	<p><strong><%= @book.user.name if @book.user %></strong></p>
 		
 		<% if @book.user == current_user %>
 		<%= link_to edit_book_path(@book) do %> 

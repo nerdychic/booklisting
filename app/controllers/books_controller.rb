@@ -2,7 +2,8 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
-
+ 
+ require 'net/http'
   # GET /books
   # GET /books.json
   def index
@@ -12,6 +13,18 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+      # uri = URI('https://api.douban.com/v2/search?q=everybody writes')
+
+      # Net::HTTP.start(uri.host, uri.port) do |http|
+      #   request = Net::HTTP::Get.new uri
+      #   response = http.request request
+
+      #   puts response.body
+      #   puts 'hello'
+      # end
+
+    # query = ''
+    # @books_from_douban = get_from_url('' + 'q=' + query)
   end
 
   # GET /books/new

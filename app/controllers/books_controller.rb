@@ -1,7 +1,8 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :upvote]
+  before_action :correct_user, only: [:edit, :update, :destroy,:upvote]
   before_action :authenticate_user!, except: [:index, :show]
+
  
  require 'net/http'
   # GET /books
@@ -65,6 +66,11 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
       redirect_to books_url, notice: 'Book was successfully destroyed.' 
+  end
+
+  def upvote
+    @book.upvote_by current_user
+    redirect_to :back
   end
 
   private

@@ -1,5 +1,7 @@
 <h1>Editing Book</h1>
 
+<%= image_tag @book.image.url(:medium) %>
+
 <%= render 'form' %>
 
 <%= link_to 'Show', @book %> |

@@ -10,12 +10,25 @@
 	<p><%= @book.description %></p>
   	<p><strong><%= @book.user.name if @book.user %></strong></p>
 		
+
+
 		<% if @book.user == current_user %>
 		<%= link_to edit_book_path(@book) do %> 
 		<span class="glyphicon glyphicon-edit"></span>
 		Edit
 		<% end %>
-      <% end %>
+		<%= link_to book_path, method: :delete, data: { confirm: 'Are you sure?' } do %>
+        <span class="glyphicon glyphicon-trash"></span>
+        Delete
+        <% end %>
+        <%= link_to like_book_path(@book), method: :put do %>
+        <span class="glyphicon glyphicon-heart"></span>
+		Like
+	    <%= @book.get_upvotes.size %>
+		<% end %>
+		<% end %>
+
+
 	</div>
 	</div>
 	</div>

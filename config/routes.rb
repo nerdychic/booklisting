@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :books
+  resources :books do
+      member do
+        put "like", to:"books#upvote"
+    end
+  end
+
+
 
   devise_for :users
   root "books#index"

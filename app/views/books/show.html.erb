@@ -7,10 +7,10 @@
 		<%= image_tag @book.image.url(:medium) %>
 </div>
 	<div class="panel-body">
-	<p><%= @book.description %></p>
+	<p>Name: <%= @book.name %></p>
+	<p>Author: <%= @book.author %></p>
+	<p>Description: <%= @book.description %></p>
   	<p><strong><%= @book.user.name if @book.user %></strong></p>
-		
-
 
 		<% if @book.user == current_user %>
 		<%= link_to edit_book_path(@book) do %> 
@@ -27,8 +27,6 @@
 	    <%= @book.get_upvotes.size %>
 		<% end %>
 		<% end %>
-
-
 	</div>
 	</div>
 	</div>

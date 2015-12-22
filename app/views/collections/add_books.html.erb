@@ -1,0 +1,21 @@
+<% @books.each do |book| %>
+  	<%= check_box_tag('book', book.id) %>
+	<%= label_tag(book.name, book.name) %>
+	<br>
+<% end %>
+
+<div class="form-group">
+        <% for collection in Collection.all %>
+            <div>
+                <%= check_box_tag "book[collection_ids][]", collection.id, @book.collections.include?(collection) %>
+                <%= collection.name %>
+            </div>
+        <% end %>
+    </div>
+
+<!-- 
+# <form action="">
+# <input type="checkbox" name="vehicle" value="Bike">I have a bike<br>
+# <input type="checkbox" name="vehicle" value="Car">I have a car 
+# </form>
+#  -->

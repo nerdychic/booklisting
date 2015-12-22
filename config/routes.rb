@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :collections do
+    member do
+      get 'add_books'
+    end
+  end
+
   resources :books do
       member do
         put "like", to:"books#upvote"

@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>Name: <%= @collection.name %></p>
+
+<%= link_to collections_path do %>
+<span class="glyphicon glyphicon-chevron-left"></span>
+  Back
+<% end %>
+
+<%= link_to edit_collection_path(@collection) do %> 
+<span class="glyphicon glyphicon-edit"></span>
+  Edit
+<% end %>

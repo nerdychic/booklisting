@@ -18,10 +18,34 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :author %><br>
+    <%= f.text_field :author, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :description %><br>
     <%= f.text_field :description, class: "form-control" %>
   </div>
+
+  <h3> Choose a collection:</h3>
+
+  <div class="form-group">
+        <% for collection in Collection.all %>
+            <div>
+                <%= check_box_tag "book[collection_ids][]", collection.id, @book.collections.include?(collection) %>
+                <%= collection.name %>
+            </div>
+        <% end %>
+    </div>
+
   <div class="form-group">
     <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
+
+

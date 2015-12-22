@@ -1,11 +1,17 @@
 <%= render 'pages/home' unless user_signed_in? %>
 
- <div id="books" class="transitions-enabled">
- <% @books.each do |book| %>
-  <div class="box panel panel-default">
+<%= link_to new_book_path do %>
+    <div class="btn btn-default">
+    New Book
+    </div>
+<% end %>
+
+<div id="books" class="transitions-enabled">
+<% @books.each do |book| %>
+  <div class="box panel panel-default" style="float:left;">
       <%= link_to image_tag(book.image.url(:medium)), book %>
       <div class="panel-body">
-        <%= book.description %><br/>
+        <%= book.name %><br/>
         <strong><%= book.user.name if book.user %></strong>
        <% if book.user == current_user %>
           <div class="actions">
@@ -17,10 +23,12 @@
         <span class="glyphicon glyphicon-trash"></span>
         Delete
         <% end %>
-         <%= link_to like_book_path(book) do %>
-        <span class="glyphicon glyphicon-heart"></span>
+          <%= link_to like_book_path(book), method: :put do %>
+         <span class="glyphicon glyphicon-heart"></span>
         Like
+         <%= book.get_upvotes.size %>
         <% end %>
+     
       </div>
       <% end %>
     </div>
@@ -28,6 +36,6 @@
     <% end %>
 </div>
 
-<div class="center">
+<div class="center" style="clear:both;">
 <%= will_paginate @books, renderer: BootstrapPagination::Rails %>
 </div>

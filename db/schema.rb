@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217061704) do
+ActiveRecord::Schema.define(version: 20151220122156) do
 
   create_table "books", force: :cascade do |t|
     t.string   "description"
@@ -22,9 +22,25 @@ ActiveRecord::Schema.define(version: 20151217061704) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "name"
+    t.string   "author"
   end
 
   add_index "books", ["user_id"], name: "index_books_on_user_id"
+
+  create_table "books_collections", id: false, force: :cascade do |t|
+    t.integer "collection_id"
+    t.integer "book_id"
+  end
+
+  add_index "books_collections", ["book_id"], name: "index_books_collections_on_book_id"
+  add_index "books_collections", ["collection_id"], name: "index_books_collections_on_collection_id"
+
+  create_table "collections", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

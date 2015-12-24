@@ -1,4 +1,7 @@
-<%= link_to 'Back', books_path %>
+<%= link_to books_path do %>
+ <span class="glyphicon glyphicon-chevron-left"></span>
+  Back
+<% end %>
 
 <div class="row">
 	<div class="col-md-offset-2 col-md-8">
@@ -8,6 +11,13 @@
 </div>
 	<div class="panel-body">
 	<p>Name: <%= @book.name %></p>
+	<p>
+	Collections:
+	<% for collection in @book.collections %>
+            	<span><%= collection.name %></span>
+            	<span>  </span>
+        <% end %>
+    </p>
 	<p>Author: <%= @book.author %></p>
 	<p>Description: <%= @book.description %></p>
   	<p><strong><%= @book.user.name if @book.user %></strong></p>
@@ -30,4 +40,22 @@
 	</div>
 	</div>
 	</div>
+</div>
+
+<div class="col-md-offset-2 col-md-8">
+      <div class="panel-heading left">
+<h4>Comments</h4>
+ <% @comments.each do |comment| %>
+  <div class="well" >
+  	 <%= comment.body %>
+  </div>
+ <% end %>
+ <%= form_for(Comment.new) do |f| %>
+	<div class="form-group">
+		<%= f.text_area :body, class: "form-control", placeholder: "Add a comment" %>
+		<%= f.hidden_field :book_id, value: @book.id %>
+	</div>
+	<%= f.submit class: "btn btn-primary" %>
+<% end %>
+ </div>
 </div>

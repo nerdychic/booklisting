@@ -17,6 +17,9 @@
 
 class Book < ActiveRecord::Base
 	acts_as_votable
+
+	has_many :comments, as: :commentable
+
     belongs_to :user
     has_and_belongs_to_many :collections
 

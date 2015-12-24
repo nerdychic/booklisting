@@ -1,17 +1,17 @@
+<!-- 
+<form action="" method="post"> -->
+<div class="actions">
 <% @books.each do |book| %>
   	<%= check_box_tag('book', book.id) %>
 	<%= label_tag(book.name, book.name) %>
 	<br>
 <% end %>
+<input type='submit' value="add" />
+</div>
+<!-- </form> -->
 
-<div class="form-group">
-        <% for collection in Collection.all %>
-            <div>
-                <%= check_box_tag "book[collection_ids][]", collection.id, @book.collections.include?(collection) %>
-                <%= collection.name %>
-            </div>
-        <% end %>
-    </div>
+
+
 
 <!-- 
 # <form action="">

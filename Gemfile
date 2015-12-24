@@ -42,6 +42,7 @@ gem 'will_paginate-bootstrap'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 
+
 group :development, :test do
   gem 'sqlite3'
 

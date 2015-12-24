@@ -9,13 +9,15 @@ Rails.application.routes.draw do
       member do
         put "like", to:"books#upvote"
     end
-  end
+      resources :comments, module: :books
+    end
 
-
+    resources :comments
 
   devise_for :users
   root "books#index"
   get "about" => "pages#about" #creates about_path
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

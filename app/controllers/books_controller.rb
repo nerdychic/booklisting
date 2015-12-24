@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy, :upvote]
   before_action :correct_user, only: [:edit, :update, :destroy,:upvote]
   before_action :authenticate_user!, except: [:index, :show]
-
+  before_action :set_commentable, only: [:show]
  
  require 'net/http'
   # GET /books
@@ -14,18 +14,6 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
-      # uri = URI('https://api.douban.com/v2/search?q=everybody writes')
-
-      # Net::HTTP.start(uri.host, uri.port) do |http|
-      #   request = Net::HTTP::Get.new uri
-      #   response = http.request request
-
-      #   puts response.body
-      #   puts 'hello'
-      # end
-
-    # query = ''
-    # @books_from_douban = get_from_url('' + 'q=' + query)
   end
 
   # GET /books/new
@@ -41,19 +29,24 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = current_user.books.build(book_params)
-
       if @book.save
         redirect_to @book, notice: 'Book was successfully created.' 
        
       else
          render :new 
-      
       end
   end
 
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
+    #@book = current_user.books.build(book_params)
+    puts "*********************************************"
+    puts @book.name
+    puts @book.collections
+    puts book_params
+    puts "*********************************************"
+
       if @book.update(book_params)
         redirect_to @book, notice: 'Book was successfully updated.' 
       else
@@ -79,6 +72,10 @@ class BooksController < ApplicationController
       @book = Book.find(params[:id])
     end
 
+    def set_commentable
+      @comments = Comment.where(book_id: params[:id])
+    end
+
   def correct_user
       @book = current_user.books.find_by(id: params[:id])
       redirect_to books_path, notice: "Not authorized to edit this book" if @book.nil?
@@ -86,6 +83,8 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:description, :image, :name, :author)
+      params.require(:book).permit(:description, :image, :name, :author, :collection_ids =>[])
+      # params.require(:collection).permit(:name,{collection_ids:[]})
     end
+
 end

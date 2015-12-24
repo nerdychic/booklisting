@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151220122156) do
+ActiveRecord::Schema.define(version: 20151224131951) do
 
   create_table "books", force: :cascade do |t|
     t.string   "description"
@@ -41,6 +41,18 @@ ActiveRecord::Schema.define(version: 20151220122156) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "commentable_type"
+    t.integer  "commentable_id"
+    t.integer  "user_id"
+    t.text     "body"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "book_id"
+  end
+
+  add_index "comments", ["book_id"], name: "index_comments_on_book_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

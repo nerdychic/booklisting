@@ -2,12 +2,32 @@
 
 <p>Name: <%= @collection.name %></p>
 
-<%= link_to collections_path do %>
-<span class="glyphicon glyphicon-chevron-left"></span>
-  Back
-<% end %>
+<div>
+<div class="transitions-enabled books">
+	<% @collection.books.each do |book| %>
+  	<div class="box panel panel-default" style="float:left;">
+      	<%= link_to image_tag(book.image.url(:medium)), book %>
+      	<div class="panel-body">
+        	<%= book.name %><br/>
+        	<strong><%= book.user.name if book.user %></strong>
+       		<% if book.user == current_user %>
+          		<div class="actions">
+      	  		</div>
+    	</div>
+    	<% end %>
+	</div>
+	<% end %>
+</div>
 
-<%= link_to edit_collection_path(@collection) do %> 
-<span class="glyphicon glyphicon-edit"></span>
-  Edit
-<% end %>
+<div class="menu">
+	<%= link_to collections_path do %>
+	<span class="glyphicon glyphicon-chevron-left"></span>
+  	Back
+	<% end %>
+
+	<%= link_to edit_collection_path(@collection) do %> 
+	<span class="glyphicon glyphicon-edit"></span>
+  	Edit
+	<% end %>
+</div>
+</div>

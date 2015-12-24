@@ -19,7 +19,6 @@ class CollectionsController < ApplicationController
 
   # GET /collections/1/edit
   def edit
-
   end
 
   # POST /collections
